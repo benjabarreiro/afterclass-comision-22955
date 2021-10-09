@@ -5,7 +5,7 @@ import { faCartPlus } from "@fortawesome/free-solid-svg-icons";
 import Title from "./components/Title";
 import Button from "@mui/material/Button";
 import MaterialUI from "./components/MaterialUI";
-import Link from "@mui/material/Link";
+import {default as Enlace} from "@mui/material/Link";
 
 function App() {
   return (
@@ -17,13 +17,13 @@ function App() {
         <Button variant="contained">Hello World</Button>
       </Wrapper>
       <MaterialUI />
-      <Link href="#">Link</Link>
-      <Link href="#" color="inherit">
+      <Enlace href="#">Link</Enlace>
+      <Enlace href="#" color="inherit">
         {'color="inherit"'}
-      </Link>
-      <Link href="#" variant="body2">
+      </Enlace>
+      <Enlace href="#" variant="body2">
         {'variant="body2"'}
-      </Link>
+      </Enlace>
     </div>
   );
 }
