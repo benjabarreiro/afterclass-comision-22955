@@ -1,0 +1,6 @@
+.estilos {
+	background-color: tomato;
+	display: flex;
+	text-align: center;
+	flex-direction: column;
+}
