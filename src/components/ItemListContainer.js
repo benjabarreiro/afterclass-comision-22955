@@ -1,5 +1,7 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import { useEffect } from "react";
+import { getFirestore } from "../firebase";
 
 const arrayProducts = [
   { id: "1", name: "product 1" },
@@ -10,12 +12,28 @@ const arrayProducts = [
 ];
 
 export default function ItemListContainer() {
-  return (<div>
-	  {arrayProducts.map(el => (
-		  <div>
-			  <span>{el.name}</span>
-			  <Link to={`/detail/${el.id}`}>Ir al detalle</Link>
-		  </div>
-	  ))}
-  </div>);
+  const [items, setItems] = useState([]);
+
+  useEffect(() => {
+    const db = getFirestore();
+    const fetchData = db.collection("items");
+
+    fetchData
+      .get()
+      .then((querySnapshot) =>
+        setItems(
+          querySnapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() }))
+        )
+      );
+  }, []);
+  return (
+    <div>
+      {items.map((el) => (
+        <div>
+          <span>{el.title}</span>
+          <Link to={`/detail/${el.id}`}>Ir al detalle</Link>
+        </div>
+      ))}
+    </div>
+  );
 }
